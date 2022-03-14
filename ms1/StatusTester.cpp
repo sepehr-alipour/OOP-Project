@@ -32,7 +32,7 @@ class Container {
       return *this;
    }
 public:
-   Container(int value = 0) {
+   Container(int value = 0){
       set(value);
    }
    istream& read(istream& istr = cin) {
