@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <ctime>
+#include <string.h>
 #include "Utils.h"
 using namespace std;
 namespace sdds {
@@ -29,10 +30,11 @@ namespace sdds {
 	}
 
 	void Utils::alocpy(char*& destination, const char* source) {
-		delete[] destination;
-		destination = nullptr;
+		
 
 		if (source) {
+			delete[] destination;
+			destination = nullptr;
 			destination = new (nothrow) char[strlen(source) + 1];
 			strcpy(destination, source);
 		}

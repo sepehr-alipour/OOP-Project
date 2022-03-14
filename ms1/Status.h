@@ -19,8 +19,10 @@ namespace sdds {
   
     class Status {
         int m_statusCode;
-        char* m_errorDesc;
+        char* m_errorDesc{};
     public:
+        ~Status();
+
         Status();
         Status(char* errorDesc);
         Status(const Status& status);

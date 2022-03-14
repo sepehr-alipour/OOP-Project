@@ -21,10 +21,9 @@ that my professor provided to complete my workshops and assignments.
 #include "Utils.h"
 using namespace std;
 namespace sdds {
-	Utils utils;
 	Status::Status(char* errorDesc) {
 		if (errorDesc) {
-			utils.alocpy(m_errorDesc, errorDesc);
+			ut.alocpy(m_errorDesc, errorDesc);
 		}
 		else {
 			m_errorDesc = nullptr;
@@ -33,13 +32,8 @@ namespace sdds {
 
 	}
 	Status::Status(const Status& status) {
-
-		//if (status.operator bool()) {
-		//	clear();
+		m_errorDesc = nullptr;
 		*this = status;
-		//}
-
-
 
 	}
 	Status::Status() {
@@ -48,7 +42,6 @@ namespace sdds {
 	}
 
 	Status& Status::clear() {
-
 		delete[] m_errorDesc;
 		m_errorDesc = nullptr;
 		m_statusCode = 0;
@@ -68,6 +61,7 @@ namespace sdds {
 	}
 
 	Status:: operator char* () const {
+	
 		return (char*)m_errorDesc;
 	}
 	Status:: operator int() const {
@@ -78,7 +72,7 @@ namespace sdds {
 
 		if (&status != this) {
 			m_errorDesc = nullptr;
-			utils.alocpy(m_errorDesc, status.m_errorDesc);
+			ut.alocpy(m_errorDesc, status.m_errorDesc);
 			m_statusCode = status.m_statusCode;
 			//Status
 		}
@@ -89,6 +83,7 @@ namespace sdds {
 	Status& Status::operator=(const char* desc) {
 		if (desc)
 		{
+
 			ut.alocpy(m_errorDesc, desc);
 		}
 		return *this;
@@ -100,7 +95,10 @@ namespace sdds {
 		return *this;
 
 	}
-
+	Status::~Status() {
+		delete[] m_errorDesc;
+		m_errorDesc = nullptr;
+	}
 
 
 
