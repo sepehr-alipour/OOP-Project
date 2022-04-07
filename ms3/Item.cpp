@@ -47,7 +47,7 @@ namespace sdds {
 		{
 			ostr << m_status;
 		}
-		else if (isLinear)
+		else if (linear())
 		{
 			ostr << m_stockNumber << " | ";
 
@@ -91,7 +91,7 @@ namespace sdds {
 		this->isLinear = isLinear;
 	}
 
-	bool Item::linear() {
+	bool Item::linear() const{
 		return isLinear;
 	}
 

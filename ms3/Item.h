@@ -33,7 +33,7 @@ namespace sdds {
 
 		Status m_status; 
 		int m_stockNumber;
-		bool linear();
+		bool linear() const;
 
 	public:
 		~Item();
