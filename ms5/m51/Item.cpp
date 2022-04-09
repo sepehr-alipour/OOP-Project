@@ -1,5 +1,5 @@
 /* ------------------------------------------------------
-Projcet MS5
+Projcet MS4
 Module: N/A
 Filename: Item.cpp
 Version 1
@@ -8,7 +8,7 @@ Email   salipour2@myseneca.ca
 StudentID 107296212
 Revision History
 -----------------------------------------------------------
-Date       04/09/2022
+Date       04/06/2022
 -----------------------------------------------------------
 I have done all the coding by myself and only copied the code
 that my professor provided to complete my workshops and assignments.
@@ -96,12 +96,12 @@ namespace sdds {
 		this->isLinear = isLinear;
 	}
 
-	bool Item::linear() const {
+	bool Item::linear() const{
 		return isLinear;
 	}
 
 	ifstream& Item::load(ifstream& ifstr) {
-
+		
 		char description[1000] = {};
 
 		if (ifstr.eof()) {
@@ -149,7 +149,7 @@ namespace sdds {
 	}
 	Item& Item::operator=(const Item& item) {
 		m_description = nullptr;
-		if (&item != this && m_description != item.m_description && item.m_description != nullptr) {
+		if (&item != this && m_description!= item.m_description &&item.m_description!=nullptr) {
 			ut.alocpy(m_description, item.m_description);
 			m_price = item.m_price;
 			m_qty = item.m_qty;
@@ -197,12 +197,12 @@ namespace sdds {
 		cout << "SKU: " << m_stockNumber;
 		cout << endl;
 		cout << "Description: ";
-
+		
 		istr.ignore(1000, '\n');
 		getline(istr, desc);
 		ut.alocpy(m_description, desc.c_str());
 		istr.clear();
-
+	
 
 		cout << "Quantity Needed: ";
 		do
@@ -298,7 +298,7 @@ namespace sdds {
 	ofstream& Item::save(std::ofstream& ofstr)const {
 		if (m_status)
 		{
-			ofstr
+			ofstr 
 				<< m_stockNumber << "\t"
 				<< m_description << "\t"
 				<< m_qty << "\t"

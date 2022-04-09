@@ -1,5 +1,5 @@
 /* ------------------------------------------------------
-Projcet MS5
+Projcet MS4
 Module: N/A
 Filename: Item.cpp
 Version 1
@@ -8,7 +8,7 @@ Email   salipour2@myseneca.ca
 StudentID 107296212
 Revision History
 -----------------------------------------------------------
-Date       04/09/2022
+Date       04/06/2022
 -----------------------------------------------------------
 I have done all the coding by myself and only copied the code
 that my professor provided to complete my workshops and assignments.
@@ -80,7 +80,7 @@ namespace sdds {
 	ofstream& Perishable::save(std::ofstream& ofstr) const {
 		if (m_status)
 		{
-
+			
 			Date expiryDate = m_expiryDate;
 			Item::save(ofstr);
 			ofstr << "\t"
@@ -100,8 +100,7 @@ namespace sdds {
 			Item::load(ifstr);
 			if (ifstr.fail()) {
 				m_status = "Input file stream read (perishable) failed!";
-			}
-			else {
+			}else{
 				next = ifstr.peek();
 				if (next == '\t') {
 					instruction[0] = '\0';
@@ -113,7 +112,7 @@ namespace sdds {
 					ifstr.peek();
 					ifstr.ignore(1000, '\t');
 					ifstr >> m_expiryDate;
-					ifstr.ignore(10000, '\n');
+					ifstr.ignore(10000, '\n'); 
 				}
 				else {
 					instruction[0] = '\0';
@@ -125,13 +124,13 @@ namespace sdds {
 					ut.alocpy(m_instruction, instruction);
 				}
 			}
-
+		
 		}
 		else {
 			ifstr.close();
 		}
 		return ifstr;
-
+	
 	}
 	Perishable::Perishable(const Perishable& perishable) :Item(perishable) {
 		if (m_status) {
@@ -141,8 +140,8 @@ namespace sdds {
 		}
 	}
 	Perishable::operator bool() const {
-		if (m_stockNumber <= 39999 && m_stockNumber >= 10000)
-			return true;
+		if(m_stockNumber<=39999 && m_stockNumber>=10000)
+		return true;
 		return false;
 	}
 	istream& Perishable::read(std::istream& istr) {
