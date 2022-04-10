@@ -27,23 +27,55 @@ that my professor provided to complete my workshops and assignments.
 
 using namespace std;
 namespace sdds {
-	template<typename Base, typename T>
-	inline bool instanceof(const T*) {
-		return std::is_base_of<Base, T>::value;
+	ostream& printHeader(ostream& ostr) {
+		ostr << setw(5) << left << " ROW " << "|"
+			<< "  SKU  "
+			<< "|" << left << setw(37) << setfill(' ') << " Description"
+			<< "|" << " Have "
+			<< "|" << " Need "
+			<< "|" << "  Price  "
+			<< "|" << " Expiry"
+			<< endl;
+		ostr << right << setw(6) << setfill('-') << "+"
+			<< right << setw(8) << setfill('-') << "+"
+			<< right << setw(38) << setfill('-') << "+"
+			<< right << setw(7) << setfill('-') << "+"
+			<< right << setw(7) << setfill('-') << "+"
+			<< right << setw(10) << setfill('-') << "+"
+			<< right << setw(11) << setfill('-') << "" << endl;
+		return ostr;
+
 	}
-	int AidMan::menu() {
+	ostream& printFooter(ostream& ostr) {
+
+		ostr << right << setw(6) << setfill('-') << "+"
+			<< right << setw(8) << setfill('-') << "+"
+			<< right << setw(38) << setfill('-') << "+"
+			<< right << setw(7) << setfill('-') << "+"
+			<< right << setw(7) << setfill('-') << "+"
+			<< right << setw(10) << setfill('-') << "+"
+			<< right << setw(11) << setfill('-') << "" << endl;
+		return ostr;
+
+	}
+	ostream& getDate(ostream& ostr)
+	{
 		int year, month, day;
 		ut.getSystemDate(&year, &month, &day);
+		ostr << year << "/";
+		if (month < 10)
+			ostr << "0";
+		ostr << month;
+		ostr << "/" << day;
+		return ostr;
+	}
+	int AidMan::menu() {
+
 
 		cout << "Aid Management System" << endl;
 		cout << "Date: ";
-		cout << year;
-		cout << "/";
-		if (month < 10)
-			cout << "0";
-		cout << month;
-		cout << "/";
-		cout << day << endl;
+		getDate(cout);
+		cout << endl;
 		cout << "Data file: " << (!m_fileName ? "No file" : m_fileName) << endl;
 		cout << "---------------------------------" << endl;
 
@@ -51,6 +83,7 @@ namespace sdds {
 		return m_menu.run();
 
 	}
+
 
 	AidMan::AidMan() {
 		m_fileName = nullptr;
@@ -93,7 +126,8 @@ namespace sdds {
 		char* strDescription = nullptr;
 		int rowItem = 0;
 		Menu customMenu;
-
+		int counter;
+		ofstream ofstr;
 		do {
 			option = menu();
 			if (option != 0 && option != 7 && !m_fileName)
@@ -215,7 +249,28 @@ namespace sdds {
 				cout << "Sort completed!" << endl << endl;
 				break;
 			case 6:
-				cout << endl << "****Ship Items****" << endl << endl;
+				counter = 0;
+				cout << endl << "****Ship Items****" << endl;
+				ofstr.open("shippingOrder.txt", ios::out);
+				ofstr << "Shipping Order, Date: ";
+				getDate(ofstr);
+				ofstr << endl;
+
+				printHeader(ofstr);
+
+				for (int i = 0; i < m_product_length; i++)
+				{
+					if (m_products[i]->qty() == m_products[i]->qtyNeeded()) {
+						m_products[i]->linear(true);
+						ofstr << right << setw(4) << setfill(' ') << counter + 1 << " | " << *m_products[i] << endl;
+						remove(i);
+						counter++;
+
+					}
+				}
+				printFooter(ofstr);
+
+				cout << "Shipping Order for " << counter << " times saved!" << endl << endl;
 				break;
 			case 7:
 				cout << endl << "****New/Open Aid Database****" << endl;
@@ -314,22 +369,8 @@ namespace sdds {
 	int AidMan::list(const char* sub_desc)
 	{
 		int i, counter = 0;
+		printHeader(cout);
 
-		cout << setw(5) << left << " ROW " << "|"
-			<< "  SKU  "
-			<< "|" << left << setw(37) << setfill(' ') << " Description"
-			<< "|" << " Have "
-			<< "|" << " Need "
-			<< "|" << "  Price  "
-			<< "|" << " Expiry"
-			<< endl;
-		cout << right << setw(6) << setfill('-') << "+"
-			<< right << setw(8) << setfill('-') << "+"
-			<< right << setw(38) << setfill('-') << "+"
-			<< right << setw(7) << setfill('-') << "+"
-			<< right << setw(7) << setfill('-') << "+"
-			<< right << setw(10) << setfill('-') << "+"
-			<< right << setw(11) << setfill('-') << "" << endl;
 		if (sub_desc)
 		{
 			for (i = 0; i < m_product_length; i++)
@@ -354,14 +395,8 @@ namespace sdds {
 			}
 			counter = m_product_length;
 		}
+		printFooter(cout);
 
-		cout << right << setw(6) << setfill('-') << "+"
-			<< right << setw(8) << setfill('-') << "+"
-			<< right << setw(38) << setfill('-') << "+"
-			<< right << setw(7) << setfill('-') << "+"
-			<< right << setw(7) << setfill('-') << "+"
-			<< right << setw(10) << setfill('-') << "+"
-			<< right << setw(11) << setfill('-') << "" << endl;
 		return counter;
 
 	}

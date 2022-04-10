@@ -42,8 +42,12 @@ namespace sdds {
 
 		void remove(int index);
 		void sort();
-
+	
 	};
+	std::ostream& getDate(std::ostream& ostream);
+
+	std::ostream& printHeader(std::ostream& ostr);
+	std::ostream& printFooter(std::ostream& ostr);
 }
 
 #endif
