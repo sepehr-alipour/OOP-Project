@@ -30,9 +30,6 @@
     <ClCompile Include="..\..\main54.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\main56.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -71,13 +68,5 @@
     <ClInclude Include="..\..\iProduct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\data54.dat">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="..\..\data56.dat">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

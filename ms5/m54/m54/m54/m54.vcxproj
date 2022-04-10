@@ -144,7 +144,6 @@
     <ClCompile Include="..\..\iProduct.cpp" />
     <ClCompile Include="..\..\Item.cpp" />
     <ClCompile Include="..\..\main54.cpp" />
-    <ClCompile Include="..\..\main56.cpp" />
     <ClCompile Include="..\..\Menu.cpp" />
     <ClCompile Include="..\..\Perishable.cpp" />
     <ClCompile Include="..\..\Status.cpp" />
@@ -159,10 +158,6 @@
     <ClInclude Include="..\..\Perishable.h" />
     <ClInclude Include="..\..\Status.h" />
     <ClInclude Include="..\..\Utils.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\data54.dat" />
-    <None Include="..\..\data56.dat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

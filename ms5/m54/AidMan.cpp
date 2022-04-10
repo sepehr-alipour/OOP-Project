@@ -69,6 +69,7 @@ namespace sdds {
 		ostr << "/" << day;
 		return ostr;
 	}
+
 	int AidMan::menu() {
 
 
@@ -121,12 +122,8 @@ namespace sdds {
 	}
 
 	void AidMan::run() {
-		int option, sku, listItems;
-		string description;
-		char* strDescription = nullptr;
-		int rowItem = 0;
+		int option, index, sku, listItems, quantity, counter, rowItem = 0;
 		Menu customMenu;
-		int counter;
 		ofstream ofstr;
 		do {
 			option = menu();
@@ -134,6 +131,10 @@ namespace sdds {
 				option = 7;
 			switch (option)
 			{
+			case 0:
+				option = -1;
+
+				break;
 			case 1:
 				if (m_product_length > 0) {
 					cout << endl << "****List Items****" << endl;
@@ -186,7 +187,7 @@ namespace sdds {
 				}
 
 				else {
-					cout << "Aborted\n";
+					cout << "Aborted" << endl << endl;
 					break;
 				}
 
@@ -206,42 +207,74 @@ namespace sdds {
 
 				break;
 			case 3:
-				int index;
 				cout << endl << "****Remove Item****" << endl;
-				cout << "Item description: ";
-				cin >> description;
-				ut.alocpy(strDescription, description.c_str());
-				if (list(strDescription) > 0)
-				{
-					cout << "Enter SKU: ";
-					index = search(ut.getint());
 
-					if (index != -1)
+				index = searchByDescription();
+				if (index != -1)
+				{
+					cout << "Following item will be removed: " << endl;
+					m_products[index]->linear(false);
+					cout << *m_products[index] << endl;
+					customMenu.setOptions("Are you sure?\n1- Yes!", 1);
+					option = customMenu.run();
+					if (option == 1)
 					{
-						cout << "Following item will be removed: " << endl;
-						m_products[index]->linear(false);
-						cout << *m_products[index] << endl;
-						customMenu.setOptions("Are you sure?\n1- Yes!", 1);
-						option = customMenu.run();
-						if (option == 1)
-						{
-							remove(index);
-							cout << "Item removed!" << endl << endl;
-							delete[]strDescription;
-						}
-						else {
-							cout << "Aborted!";
-							break;
-						}
+						remove(index);
+						cout << "Item removed!" << endl << endl;
 
 					}
+					else {
+						cout << "Aborted!" << endl << endl;
+						break;
+					}
+
 				}
-				else {
-					cout << "The list is emtpy!" << endl;
-				}
+
 				break;
 			case 4:
-				cout << endl << "****Update Quantity****" << endl << endl;
+
+				cout << endl << "****Update Quantity****" << endl;
+				index = searchByDescription();
+				if (index != -1)
+				{
+					customMenu.setOptions("1- Add\n2- Reduce", 2);
+					option = customMenu.run();
+					if (option == 1)
+					{
+						if (m_products[index]->qtyNeeded() == m_products[index]->qty())
+						{
+							cout << "Quantity Needed already fulfilled!" << endl << endl;
+							break;
+						}
+						cout << "Quantity to add: ";
+						quantity = ut.getint(1, m_products[index]->qtyNeeded());
+						m_products[index]->operator+=(quantity);
+						cout << quantity << " items added!" << endl;
+
+					}
+					else if (option == 2) {
+
+						if (m_products[index]->qtyNeeded() == 0)
+						{
+							cout << "Quaintity on hand is zero!" << endl;
+							break;
+						}
+						cout << "Quantity to reduce: ";
+						quantity = ut.getint(1, m_products[index]->qtyNeeded());
+						m_products[index]->operator-=(quantity);
+						cout << quantity << " items removed!" << endl;
+					}
+					else {
+						cout << "Aborted!" << endl << endl;
+						break;
+					}
+
+				}
+
+
+
+
+				cout << endl;
 				break;
 			case 5:
 				cout << endl << "****Sort****" << endl;
@@ -283,7 +316,9 @@ namespace sdds {
 				break;
 
 			}
-		} while (option != 0);
+		} while (option != -1);
+
+
 		save();
 		cout << "Exiting Program!" << endl;
 	}
@@ -434,6 +469,38 @@ namespace sdds {
 					m_products[j] = m_products[j + 1];
 					m_products[j + 1] = &temp;
 				}
+	}
+
+	int AidMan::searchByDescription() {
+		char* strDescription = nullptr;
+		string description;
+		int index = -1;
+
+		cout << "Item description: ";
+		cin >> description;
+		ut.alocpy(strDescription, description.c_str());
+		if (list(strDescription) > 0)
+		{
+			delete[]strDescription;
+			cout << "Enter SKU: ";
+			index = search(ut.getint());
+			if (index != -1)
+			{
+
+				return index;
+			}
+
+			else {
+				cout << "SKU not found!" << endl;
+
+
+			}
+		}
+		else {
+			cout << "The list is emtpy!" << endl;
+		}
+		
+		return index;
 	}
 
 

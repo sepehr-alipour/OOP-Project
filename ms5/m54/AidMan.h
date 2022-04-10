@@ -42,6 +42,7 @@ namespace sdds {
 
 		void remove(int index);
 		void sort();
+		int searchByDescription();
 	
 	};
 	std::ostream& getDate(std::ostream& ostream);
