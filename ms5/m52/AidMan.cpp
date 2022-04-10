@@ -164,6 +164,7 @@ namespace sdds {
 				}
 				else {
 					cin >> *product;
+					cout << endl;
 					if (product) {
 						m_products[m_product_length] = product;
 						m_product_length += 1;

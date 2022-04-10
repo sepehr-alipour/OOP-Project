@@ -85,7 +85,7 @@ namespace sdds {
 			Item::save(ofstr);
 			ofstr << "\t";
 			if (m_instruction)
-				ofstr << m_instruction;
+				ofstr << m_instruction <<"\t";
 			ofstr << expiryDate.formatted(false);
 
 		}
