@@ -59,13 +59,13 @@ namespace sdds {
 			if (strlen(m_description) > 35)
 			{
 				description = description.substr(0, 35);
-				strcpy(m_description, description.c_str());
 
 			}
+			
 
 
 
-			ostr << setw(36) << setfill(' ') << left << m_description
+			ostr << setw(36) << setfill(' ') << left << description
 				<< "|" << right << setw(5) << setfill(' ') << m_qty
 				<< " |" << right << setw(5) << setfill(' ') << m_qtyNeeded
 				<< setw(2) << "|" << right << setw(8) << setfill(' ') << m_price

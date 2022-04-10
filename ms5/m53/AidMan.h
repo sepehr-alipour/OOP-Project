@@ -39,6 +39,9 @@ namespace sdds {
 		int list(const char* sub_desc = nullptr);
 		void deallocate();
 		int search(int sku) const;
+
+		void remove(int index);
+
 	};
 }
 

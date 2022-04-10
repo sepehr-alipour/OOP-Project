@@ -88,10 +88,11 @@ namespace sdds {
 	}
 
 	void AidMan::run() {
-		int option;
-		int listItems;
+		int option, sku, listItems;
+		string description;
+		char* strDescription = nullptr;
 		int rowItem = 0;
-		Menu addMenu;
+		Menu customMenu;
 
 		do {
 			option = menu();
@@ -105,7 +106,7 @@ namespace sdds {
 
 					listItems = list();
 
-					if (listItems > 1) {
+					if (listItems > 0) {
 						cout << "Enter row number to display details or <ENTER> to continue:" << endl;
 						cout << "> ";
 						cin.ignore(1000, '\n');
@@ -137,11 +138,9 @@ namespace sdds {
 					cout << "Database full!";
 					break;
 				}
-				int option;
-				addMenu.setOptions("1- Perishable\n2- Non-Perishable\n-----------------", 2);
-				option = addMenu.run();
+				customMenu.setOptions("1- Perishable\n2- Non-Perishable\n-----------------", 2);
+				option = customMenu.run();
 				iProduct* product;
-				int sku;
 				if (option == 1)
 				{
 					product = new Perishable;
@@ -173,7 +172,39 @@ namespace sdds {
 
 				break;
 			case 3:
-				cout << endl << "****Remove Item****" << endl << endl;
+				int index;
+				cout << endl << "****Remove Item****" << endl;
+				cout << "Item description: ";
+				cin >> description;
+				ut.alocpy(strDescription, description.c_str());
+				if (list(strDescription) > 0)
+				{
+					cout << "Enter SKU: ";
+					index = search(ut.getint());
+
+					if (index != -1)
+					{
+						cout << "Following item will be removed: " << endl;
+						m_products[index]->linear(false);
+						cout << *m_products[index] << endl;
+						customMenu.setOptions("Are you sure?\n1- Yes!", 1);
+						option = customMenu.run();
+						if (option == 1)
+						{
+							remove(index);
+							cout << "Item removed!" << endl<<endl;
+							delete[]strDescription;
+						}
+						else {
+							cout << "Aborted!";
+							break;
+						}
+
+					}
+				}
+				else {
+					cout << "The list is emtpy!" << endl;
+				}
 				break;
 			case 4:
 				cout << endl << "****Update Quantity****" << endl << endl;
@@ -280,6 +311,8 @@ namespace sdds {
 
 	int AidMan::list(const char* sub_desc)
 	{
+		int i, counter = 0;
+
 		cout << setw(5) << left << " ROW " << "|"
 			<< "  SKU  "
 			<< "|" << left << setw(37) << setfill(' ') << " Description"
@@ -297,30 +330,27 @@ namespace sdds {
 			<< right << setw(11) << setfill('-') << "" << endl;
 		if (sub_desc)
 		{
-			int i, counter = 0;
 			for (i = 0; i < m_product_length; i++)
 			{
 				if (m_products[i]->operator == (sub_desc))
 				{
-					if (m_products[i]->operator==(sub_desc))
-						m_products[i]->linear(true);
+					m_products[i]->linear(true);
+					cout << right << setw(4) << setfill(' ') << i + 1 << " | " << *m_products[i] << endl;
 					counter += 1;
 				}
 
 			}
 
-			return counter;
 		}
 		else
 		{
-			int i;
 			for (i = 0; i < m_product_length; i++)
 			{
 				m_products[i]->linear(true);
 				cout << right << setw(4) << setfill(' ') << i + 1 << " | " << *m_products[i] << endl;
 
 			}
-
+			counter = m_product_length;
 		}
 
 		cout << right << setw(6) << setfill('-') << "+"
@@ -330,7 +360,7 @@ namespace sdds {
 			<< right << setw(7) << setfill('-') << "+"
 			<< right << setw(10) << setfill('-') << "+"
 			<< right << setw(11) << setfill('-') << "" << endl;
-		return m_product_length;
+		return counter;
 
 	}
 
@@ -342,6 +372,20 @@ namespace sdds {
 		}
 		return -1;
 	}
+
+
+
+	void AidMan::remove(int index) {
+		delete m_products[index];
+
+		for (int i = index; i < m_product_length; i++)
+		{
+			m_products[i] = m_products[i + 1];
+		}
+		m_product_length -= 1;
+	}
+
+
 
 
 
