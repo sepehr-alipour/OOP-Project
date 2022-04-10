@@ -41,6 +41,7 @@ namespace sdds {
 		int search(int sku) const;
 
 		void remove(int index);
+		void sort();
 
 	};
 }

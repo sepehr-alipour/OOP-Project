@@ -192,7 +192,7 @@ namespace sdds {
 						if (option == 1)
 						{
 							remove(index);
-							cout << "Item removed!" << endl<<endl;
+							cout << "Item removed!" << endl << endl;
 							delete[]strDescription;
 						}
 						else {
@@ -210,7 +210,9 @@ namespace sdds {
 				cout << endl << "****Update Quantity****" << endl << endl;
 				break;
 			case 5:
-				cout << endl << "****Sort****" << endl << endl;
+				cout << endl << "****Sort****" << endl;
+				sort();
+				cout << "Sort completed!" << endl << endl;
 				break;
 			case 6:
 				cout << endl << "****Ship Items****" << endl << endl;
@@ -383,6 +385,20 @@ namespace sdds {
 			m_products[i] = m_products[i + 1];
 		}
 		m_product_length -= 1;
+	}
+	void AidMan::sort()
+	{
+		int i, j;
+		for (i = 0; i < m_product_length - 1; i++)
+
+			for (j = 0; j < m_product_length - i - 1; j++)
+				if (m_products[j]->qtyNeeded() - m_products[j]->qty() < m_products[j + 1]->qtyNeeded() - m_products[j + 1]->qty())
+				{
+
+					iProduct& temp = *m_products[j];
+					m_products[j] = m_products[j + 1];
+					m_products[j + 1] = &temp;
+				}
 	}
 
 

@@ -27,7 +27,7 @@
     <ClCompile Include="..\Item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\main54.cpp">
+    <ClCompile Include="..\main55.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Menu.cpp">
