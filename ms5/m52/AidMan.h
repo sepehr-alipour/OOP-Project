@@ -38,6 +38,7 @@ namespace sdds {
 		AidMan(const AidMan& menu) = delete;
 		int list(const char* sub_desc = nullptr);
 		void deallocate();
+		int search(int sku) const;
 	};
 }
 

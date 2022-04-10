@@ -91,6 +91,7 @@ namespace sdds {
 		int option;
 		int listItems;
 		int rowItem = 0;
+		Menu addMenu;
 
 		do {
 			option = menu();
@@ -130,7 +131,45 @@ namespace sdds {
 
 				break;
 			case 2:
-				cout << endl << "****Add Item****" << endl << endl;
+				cout << endl << "****Add Item****" << endl;
+				if (m_product_length == sdds_max_num_items)
+				{
+					cout << "Database full!";
+					break;
+				}
+				int option;
+				addMenu.setOptions("1- Perishable\n2- Non-Perishable\n-----------------", 2);
+				option = addMenu.run();
+				iProduct* product;
+				int sku;
+				if (option == 1)
+				{
+					product = new Perishable;
+
+				}
+				else if (option == 2) {
+					product = new Item;
+
+				}
+
+				else {
+					cout << "Aborted\n";
+					break;
+				}
+
+				sku = product->readSku(cin);
+				if (search(sku) != -1) {
+					cout << "Sku: " << sku << " is already in the system, try updating quantity instead." << endl << endl;
+					delete product;
+				}
+				else {
+					cin >> *product;
+					if (product) {
+						m_products[m_product_length] = product;
+						m_product_length += 1;
+					}
+				}
+
 				break;
 			case 3:
 				cout << endl << "****Remove Item****" << endl << endl;
@@ -292,6 +331,15 @@ namespace sdds {
 			<< right << setw(11) << setfill('-') << "" << endl;
 		return m_product_length;
 
+	}
+
+	int AidMan::search(int sku) const {
+		for (int i = 0; i < m_product_length; i++)
+		{
+			if (m_products[i]->operator==(sku))
+				return i;
+		}
+		return -1;
 	}
 
 

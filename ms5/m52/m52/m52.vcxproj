@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{2748e9f5-01dd-4f60-8350-3ba2a4189914}</ProjectGuid>
-    <RootNamespace>ms4</RootNamespace>
+    <ProjectGuid>{09528001-e08a-41ca-a7bf-b5bdd926ff68}</ProjectGuid>
+    <RootNamespace>m52</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>ms51</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -140,28 +139,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="data.dat" />
+    <ClCompile Include="..\AidMan.cpp" />
+    <ClCompile Include="..\Date.cpp" />
+    <ClCompile Include="..\iProduct.cpp" />
+    <ClCompile Include="..\Item.cpp" />
+    <ClCompile Include="..\main52.cpp" />
+    <ClCompile Include="..\Menu.cpp" />
+    <ClCompile Include="..\Perishable.cpp" />
+    <ClCompile Include="..\Status.cpp" />
+    <ClCompile Include="..\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AidMan.cpp" />
-    <ClCompile Include="Date.cpp" />
-    <ClCompile Include="iProduct.cpp" />
-    <ClCompile Include="Item.cpp" />
-    <ClCompile Include="main51.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Perishable.cpp" />
-    <ClCompile Include="Status.cpp" />
-    <ClCompile Include="Utils.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AidMan.h" />
-    <ClInclude Include="Date.h" />
-    <ClInclude Include="iProduct.h" />
-    <ClInclude Include="Item.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="Perishable.h" />
-    <ClInclude Include="Status.h" />
-    <ClInclude Include="Utils.h" />
+    <ClInclude Include="..\AidMan.h" />
+    <ClInclude Include="..\Date.h" />
+    <ClInclude Include="..\iProduct.h" />
+    <ClInclude Include="..\Item.h" />
+    <ClInclude Include="..\Menu.h" />
+    <ClInclude Include="..\Perishable.h" />
+    <ClInclude Include="..\Status.h" />
+    <ClInclude Include="..\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,63 +15,58 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Date.cpp">
+    <ClCompile Include="..\AidMan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="iProduct.cpp">
+    <ClCompile Include="..\Date.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
+    <ClCompile Include="..\iProduct.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Perishable.cpp">
+    <ClCompile Include="..\Item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Status.cpp">
+    <ClCompile Include="..\main52.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Utils.cpp">
+    <ClCompile Include="..\Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AidMan.cpp">
+    <ClCompile Include="..\Perishable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main51.cpp">
+    <ClCompile Include="..\Status.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.cpp">
+    <ClCompile Include="..\Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Date.h">
+    <ClInclude Include="..\AidMan.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="iProduct.h">
+    <ClInclude Include="..\Date.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
+    <ClInclude Include="..\iProduct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Perishable.h">
+    <ClInclude Include="..\Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Status.h">
+    <ClInclude Include="..\Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utils.h">
+    <ClInclude Include="..\Perishable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
+    <ClInclude Include="..\Status.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AidMan.h">
+    <ClInclude Include="..\Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="data.dat">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
 </Project>
