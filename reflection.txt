@@ -1,0 +1,30 @@
+/* ------------------------------------------------------
+Projcet MS5
+Module: N/A
+Filename: reflect.txt
+Version 1
+Author	Sepehr Alipour
+Email   salipour2@myseneca.ca
+StudentID 107296212
+Revision History
+-----------------------------------------------------------
+Date       04/10/2022
+-----------------------------------------------------------
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my workshops and assignments.
+*/
+
+
+In this project, I have learned several concepts of objected oriented programming for developing
+modular applications. I had several issues at the beginning of my project while I could implement 
+the modules gradually in each milestone.
+In milestone 1 I got how the state of an application can handle the errors that may occur in reading 
+the data. Also, I could convert the data with formating to the required format.
+My favorite file is milestone 2 because I created a dynamic interface menu for having infinite menu items.
+That was amazing.
+I think the challenges started with milestones 3 and 4. In these two milestones, I implemented whatever I 
+learned during the semester like virtual functions, polymorphism, and inheritance. Also, working with input and 
+output streams was a tedious attempt that we should read the file properly and save it as well. Finally, I could 
+do that and now I can say I am an I/O hard worker.
+Overall, this project was a great experience for me because I have submitted everything that I have learned before
+and that could be a fantastic portfolio of c++ programming.
